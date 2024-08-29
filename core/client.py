@@ -1,5 +1,9 @@
 import logging
+import os
+from typing import Any
+
 import requests
+from dotenv import load_dotenv
 from hamcrest import assert_that, equal_to
 import deepdiff
 
@@ -10,10 +14,16 @@ class ApiClient(object):
     def __init__(self, base_url):
         self.base_url = base_url
         self.session = requests.Session()
+        self.load_env_variables()
 
     def _build_url(self, url):
         logging.debug(f"Request url: {self.base_url}/{url}")
         return f"{self.base_url}/{url}"
+
+    def load_env_variables(self):
+        load_dotenv()
+        self.username = os.getenv("USERNAME")
+        self.password = os.getenv("PASSWORD")
 
     def get(self, url, headers=None, cookies=None):
         return ApiResponse(self.session.get(self._build_url(url), headers=headers, cookies=cookies))
@@ -21,7 +31,7 @@ class ApiClient(object):
     def post(self, url, body, headers=None, cookies=None):
         return ApiResponse(self.session.post(self._build_url(url), json=body, headers=headers, cookies=cookies))
 
-    def login(self, username, password):
+    def login(self, username, password) -> "ApiResponse":
         url = f"user/login?username={username}&password={password}"
         return self.get(url)
 
