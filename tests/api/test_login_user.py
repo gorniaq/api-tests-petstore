@@ -20,6 +20,3 @@ def test_login_user():
         login_data = response.body()
         session_message = "logged in user session:" + login_data['message'].split(":")[1]
         assert_that(login_data['message'], equal_to(session_message), "Login message should match expected pattern")
-
-
-
