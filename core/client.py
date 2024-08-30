@@ -1,11 +1,10 @@
 import logging
 import os
-from typing import Any
-
 import requests
+import deepdiff
+
 from dotenv import load_dotenv
 from hamcrest import assert_that, equal_to
-import deepdiff
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -28,8 +27,20 @@ class ApiClient(object):
     def get(self, url, headers=None, cookies=None):
         return ApiResponse(self.session.get(self._build_url(url), headers=headers, cookies=cookies))
 
-    def post(self, url, body, headers=None, cookies=None):
-        return ApiResponse(self.session.post(self._build_url(url), json=body, headers=headers, cookies=cookies))
+    def post(self, url, body=None, files=None, headers=None, cookies=None):
+        if files:
+            response = self.session.post(self._build_url(url), files=files, headers=headers, cookies=cookies)
+        else:
+            response = self.session.post(self._build_url(url), json=body, headers=headers, cookies=cookies)
+        return ApiResponse(response)
+
+    def post_form(self, url, body=None, files=None, headers=None, cookies=None):
+        response = self.session.post(self._build_url(url), data=body, files=files, headers=headers, cookies=cookies)
+        return ApiResponse(response)
+
+    def delete(self, url, headers=None, cookies=None):
+        response = self.session.delete(self._build_url(url), headers=headers, cookies=cookies)
+        return ApiResponse(response)
 
     def login(self, username, password) -> "ApiResponse":
         url = f"user/login?username={username}&password={password}"
@@ -53,3 +64,6 @@ class ApiResponse(object):
         if diff:
             logging.info(diff.to_json())
             assert_that(diff.to_json(), equal_to({}))
+
+    def status_code(self):
+        return self._response.status_code
