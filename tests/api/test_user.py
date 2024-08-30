@@ -1,6 +1,5 @@
 import allure
 from dataclasses import asdict
-
 from hamcrest import assert_that, equal_to
 
 from config import BASE_URL
