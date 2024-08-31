@@ -34,17 +34,14 @@ class TestUserManagement:
 
     @allure.feature("Create Users")
     @allure.story("Create list of users with valid data")
-    @allure.severity(allure.severity_level.CRITICAL)
     def test_create_users_with_list(self, user_data, api_client):
-        client = ApiClient(BASE_URL)
-
         # Prepare the 2 users payload using the user_data fixture
         users_payload = [asdict(user_data) for _ in range(2)]
 
         # Creating a list of users
         with allure.step("Create list of users with provided array"):
             response = api_client.post("user/createWithList", body=users_payload)
-            response.check_status(200)  # Проверка, что статус-код 200 (OK)
+            response.check_status(200)
 
         # Verifying that the response message matches expectations
         with allure.step("Verify response message content"):

@@ -4,10 +4,27 @@ from hamcrest import assert_that, equal_to
 
 
 class TestPetUpdates:
+    @allure.feature("Pet Management")
+    @allure.story("Update Pet Image")
+    def test_update_pet_image(self, api_client, pet_data, image_file_path):
+        """
+        Test to verify that an image can be uploaded for a specific pet and that
+        the response status is as expected.
+        """
+        with allure.step("Open and read the image file for upload"):
+            with open(image_file_path, 'rb') as image_file:
+                file_content = image_file.read()
+                files = {'file': ('image.jpg', file_content, 'image/jpeg')}
+                body = {'additionalMetadata': 'Test image'}
+
+        # Send POST request to upload the image for the specified pet
+        with allure.step(f"Send POST request to upload the image for pet ID {pet_data.id}"):
+            response = api_client.post_form(f"pet/{pet_data.id}/uploadImage", body=body, files=files)
+            # Check the response status to ensure the request was successful
+            response.check_status(200)
 
     @allure.feature("Pet Management")
     @allure.story("Update Pet Details")
-    @allure.severity(allure.severity_level.CRITICAL)
     def test_update_pet_name_and_status(self, api_client, pet_data):
         """
         Test to verify that a pet's name and status can be updated successfully.

@@ -1,8 +1,6 @@
-# conftest.py
 import random
 import string
 import pytest
-from PIL import Image
 
 from config import BASE_URL
 from core.client import ApiClient
@@ -59,4 +57,9 @@ def api_client():
     It is used in tests to interact with the API endpoints.
     """
     return ApiClient(BASE_URL)
+
+
+@pytest.fixture
+def image_file_path():
+    return "assets/image.jpg"
 

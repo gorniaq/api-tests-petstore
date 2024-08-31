@@ -1,6 +1,5 @@
 import allure
 from dataclasses import asdict
-from hamcrest import assert_that, equal_to
 
 
 class TestPetManagement:
@@ -32,10 +31,7 @@ class TestPetManagement:
             # Verify the retrieved pet data matches the added pet data
             with allure.step("Verify the retrieved pet data matches the expected data"):
                 expected_pet = pet_payload
-                retrieved_pet = get_response.body()
-
-                assert_that(retrieved_pet, equal_to(expected_pet),
-                            "The retrieved pet data should match the expected pet data")
+                get_response.exact_body(expected_pet)
 
     @allure.feature("Pet Management")
     @allure.story("Create and Delete Pet")
