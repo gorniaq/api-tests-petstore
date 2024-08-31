@@ -6,7 +6,7 @@ This repository contains automated API tests for the [Swagger Petstore](https://
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/gorniaq/api-tests-petstore
+   git clone https://github.com/gorniaq/api-tests-petstore.git
    cd api-tests-petstore
    
 2. **Install the required dependencies:**
