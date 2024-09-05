@@ -54,3 +54,4 @@ class TestPetUpdates:
             get_response_body = get_response.body()
             assert_that(get_response_body['name'], equal_to('updated_name'))
             assert_that(get_response_body['status'], equal_to('sold'))
+

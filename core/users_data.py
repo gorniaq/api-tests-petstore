@@ -14,3 +14,5 @@ class UsersData:
     password: str
     phone: str
     userStatus: int
+
+

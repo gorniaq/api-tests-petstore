@@ -12,3 +12,5 @@ class PetData:
     photoUrls: list
     tags: list
     status: str
+
+

@@ -70,7 +70,6 @@ class ApiClient(object):
 class ApiResponse(object):
     """
     A wrapper for handling API responses.
-
     Attributes:
     _response (requests.Response): The raw response object from the requests library.
     """
@@ -102,3 +101,4 @@ class ApiResponse(object):
         if diff:
             logging.info(diff.to_json())
             assert_that(diff.to_json(), equal_to({}))
+
