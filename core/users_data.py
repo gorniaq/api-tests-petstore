@@ -15,4 +15,3 @@ class UsersData:
     phone: str
     userStatus: int
 
-

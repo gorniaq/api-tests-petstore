@@ -60,4 +60,3 @@ class TestPetManagement:
             # Optionally verify the pet is no longer available
             get_response = api_client.get(f"pet/{created_pet_id}")
             get_response.check_status(404)
-

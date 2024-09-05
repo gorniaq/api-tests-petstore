@@ -47,4 +47,3 @@ class TestUserManagement:
         with allure.step("Verify response message content"):
             response_body = response.body()
             assert_that(response_body["message"], equal_to("ok"), "Response message should be 'ok'")
-

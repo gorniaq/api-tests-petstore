@@ -13,4 +13,3 @@ class PetData:
     tags: list
     status: str
 
-

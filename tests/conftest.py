@@ -64,4 +64,3 @@ def image_file_path():
     return "assets/image.jpg"
 
 
-
