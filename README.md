@@ -28,3 +28,5 @@ This repository contains automated API tests for the [Swagger Petstore](https://
 
 ## Allure Test Report
 ![Allure Report](https://i.imgur.com/gy8vEGw.png)
+
+
