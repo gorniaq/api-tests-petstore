@@ -4,8 +4,7 @@ import pytest
 
 from config import BASE_URL
 from core.client import ApiClient
-from core.pet_data import PetData
-from core.users_data import UsersData
+from core.data import UsersData, PetData
 
 
 @pytest.fixture(scope="session")

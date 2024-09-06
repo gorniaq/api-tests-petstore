@@ -1,7 +1,7 @@
 import allure
 from dataclasses import asdict
 from hamcrest import assert_that, equal_to
-
+from utils.file_manager import read_image_file
 
 class TestPetUpdates:
     @allure.feature("Pet Management")
@@ -12,10 +12,8 @@ class TestPetUpdates:
         the response status is as expected.
         """
         with allure.step("Open and read the image file for upload"):
-            with open(image_file_path, 'rb') as image_file:
-                file_content = image_file.read()
-                files = {'file': ('image.jpg', file_content, 'image/jpeg')}
-                body = {'additionalMetadata': 'Test image'}
+            files = read_image_file(image_file_path)
+            body = {'additionalMetadata': 'Test image'}
 
         # Send POST request to upload the image for the specified pet
         with allure.step(f"Send POST request to upload the image for pet ID {pet_data.id}"):
