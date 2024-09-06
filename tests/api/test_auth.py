@@ -45,3 +45,4 @@ class TestAuth:
             # Extract the logout response body and verify the message content
             response_body = logout_response.body()
             assert_that(response_body["message"], equal_to("ok"), "Response message should be 'ok' after logout")
+

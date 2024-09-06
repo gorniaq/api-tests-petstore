@@ -70,7 +70,6 @@ class ApiClient(object):
 class ApiResponse(object):
     """
     A wrapper for handling API responses.
-
     Attributes:
     _response (requests.Response): The raw response object from the requests library.
     """

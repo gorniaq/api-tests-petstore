@@ -3,6 +3,7 @@ from dataclasses import asdict
 from hamcrest import assert_that, equal_to
 from utils.file_manager import read_image_file
 
+
 class TestPetUpdates:
     @allure.feature("Pet Management")
     @allure.story("Update Pet Image")
